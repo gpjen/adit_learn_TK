@@ -7,6 +7,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
     <title>Chart COD</title>
 </head>
 <body>
@@ -40,41 +42,47 @@
     <!-- card` -->
 
     <div class="container pt-4">
-        <div class="row isiCard">
+        <div class="row justify-content-center">
 
-            
 
-            <div class="col m-1">
-                <div class="card shadow rounded" style="width: 18rem;">
-                    <img src="https://i0.wp.com/vexagame.com/wp-content/uploads/2020/07/1a3112b61c3d37d07a8ba9bd764acca9.jpg" class="card-img-top" alt="...">
+            {{#each card}}
+            <div class="col mb-5 mt-2">
+                <div class="card shadow rounded p-1" style="width: 280px;">
+                    <div style="width: 100%; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                        <img src="{{this.photo}}" class="rounded" alt="..." style="height: 200px;">
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <h5 class="card-title text-center mb-3">{{this.name}}</h5>
                         <div class="d-grid gap-2 mb-1">
-                            <a class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#detail">Details</a>
+                            <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#detail">Details</button>
                         </div>
                         <div class="d-grid gap-2">
-                            <a class="btn btn-outline-danger" type="button" href="/delete">Delete</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="detailLabel">Modal title</h5>
-                            </div>
-                            <div class="modal-body">
-                                hero detail
-                            </div>
-                            <div class="d-grid gap-2 m-2">
-                                <button class="btn btn-success" type="button" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                            </div>
+                            <a class="btn btn-outline-danger" type="button" href="/delete/{{this.id}}">Delete</a>
                         </div>
                     </div>
                 </div>
             </div>
+            {{/each}}
+            {{#each card}}
+            <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="detailLabel">{{this.name}}</h5>
+                        </div>
+                        <div class="modal-body">
+                            {{this.skill}}
+                            {{this.damage}}
 
+                        </div>
+                        <div class="d-grid gap-2 m-2">
+                            <button class="btn btn-success" type="button" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            
 
         </div>
     </div>
@@ -94,16 +102,25 @@
                     
                     <form action="/addhero" method="post">
                         <div class="mb-3">
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Name">
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Name" required>
                         </div>
                         <div class="mb-3">
-                            <input name="photo" type="text" class="form-control" placeholder="URL Photo">
+                            <input name="photo" type="text" class="form-control" placeholder="URL Photo" required>
                         </div>
                         <div class="mb-3">
-                            <input name="skill" type="text" class="form-control" placeholder="Skill">
+                            <input name="skill" type="text" class="form-control" placeholder="Skill" required>
                         </div>
                         <div class="mb-3">
-                            <input name="damage" type="text" class="form-control" placeholder="Damage">
+                            <input name="damage" type="text" class="form-control" placeholder="Damage" required>
+                        </div>
+                        <div class="mb-5">
+                            <div class="mb-3">
+                                <select name="type" class="form-select" aria-label="Default select example">
+                                    {{#each type}}
+                                    <option value="{{this.id}}">{{this.name}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
                         </div>
                         <div class="d-grid gap-2">
                             <button class="btn btn-success" type="submit">Add hero</button>
@@ -126,15 +143,44 @@
                 </div>
                 <div class="modal-body">
                     <form action="/addtype" method="post">
-                        <div class="mb-3">
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Name type">
+                        <div class="mb-4">
+                            <input name="typeName" type="text" class="form-control" id="name" placeholder="Name type">
                         </div>
-                        <div class="d-grid gap-2">
-                            <a class="btn btn-success" type="submit">Add Type</a>
+                        <div class="d-grid gap-2 mb-5">
+                            <button class="btn btn-success" type="submit">Add Type</button>
                         </div>
                     </form>
+
+                    <table class="table table-hover">
+                        {{#each type}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td><a href="/deltype/{{this.id}}"><i class="fas fa-trash text-danger"></i></a></i></td>
+                            <td><a href="/edittype/{{this.id}}" data-bs-toggle="modal" data-bs-target="#edittype"><i class="fas fa-edit text-warning"></i></a></i></td>
+                        </tr>
+                        {{/each}}
+                    </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="edittype" tabindex="-1" aria-labelledby="edittypeLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="edittypeLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            ...
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
         </div>
     </div>
 
