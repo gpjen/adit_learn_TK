@@ -1,0 +1,19 @@
+{
+  "name": "soal4b",
+  "version": "1.0.0",
+  "description": "make crud chard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gpjen95/nodeCRUD.git"
+  },
+  "author": "gandi purna jen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gpjen95/nodeCRUD/issues"
+  },
+  "homepage": "https://github.com/gpjen95/nodeCRUD#readme"
+}
