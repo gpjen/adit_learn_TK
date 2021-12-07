@@ -4,7 +4,8 @@
   "description": "make crud chard",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/gpjen95/nodeCRUD/issues"
   },
-  "homepage": "https://github.com/gpjen95/nodeCRUD#readme"
+  "homepage": "https://github.com/gpjen95/nodeCRUD#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.2.0",
+    "mysql2": "^2.3.3"
+  }
 }

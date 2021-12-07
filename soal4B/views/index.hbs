@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CRUD card COD">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Chart COD</title>
+</head>
+<body>
+
+
+    <!-- navbar` -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <a class="btn btn-outline-warning m-1" type="submit" data-bs-toggle="modal" data-bs-target="#addHero">Add hero</a>
+            <a class="btn btn-outline-warning m-1" type="submit" data-bs-toggle="modal" data-bs-target="#addType">Add type</a>
+        </form>
+        </div>
+    </div>
+    </nav>
+
+
+    <!-- card` -->
+
+    <div class="container pt-4">
+        <div class="row isiCard">
+
+            
+
+            <div class="col m-1">
+                <div class="card shadow rounded" style="width: 18rem;">
+                    <img src="https://i0.wp.com/vexagame.com/wp-content/uploads/2020/07/1a3112b61c3d37d07a8ba9bd764acca9.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div class="d-grid gap-2 mb-1">
+                            <a class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#detail">Details</a>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-outline-danger" type="button" href="/delete">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="detail" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="detailLabel">Modal title</h5>
+                            </div>
+                            <div class="modal-body">
+                                hero detail
+                            </div>
+                            <div class="d-grid gap-2 m-2">
+                                <button class="btn btn-success" type="button" data-bs-dismiss="modal" aria-label="Close">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- modal add hero -->
+
+    <div class="modal fade" id="addHero" tabindex="-1" aria-labelledby="addHeroLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addHeroLabel">Heroes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    
+                    <form action="/addhero" method="post">
+                        <div class="mb-3">
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Name">
+                        </div>
+                        <div class="mb-3">
+                            <input name="photo" type="text" class="form-control" placeholder="URL Photo">
+                        </div>
+                        <div class="mb-3">
+                            <input name="skill" type="text" class="form-control" placeholder="Skill">
+                        </div>
+                        <div class="mb-3">
+                            <input name="damage" type="text" class="form-control" placeholder="Damage">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" type="submit">Add hero</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- modal add type -->
+
+    <div class="modal fade" id="addType" tabindex="-1" aria-labelledby="addTypeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTypeLabel">Type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/addtype" method="post">
+                        <div class="mb-3">
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Name type">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-success" type="submit">Add Type</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
