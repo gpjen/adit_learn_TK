@@ -1,2 +1,2 @@
 # TK-A
-competency test
+adit - test
